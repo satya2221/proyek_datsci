@@ -1,0 +1,58 @@
+---
+title: "R Notebook"
+author: Owner
+date: 1/14/2021
+output: html_document
+---
+
+Load library
+```{r}
+library(rtweet)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+# text mining library
+library(tidytext)
+```
+
+panggil akses, kunci, dan token
+```{r}
+# whatever name you assigned to your created app
+appname <- "Analysis_to_amd"
+
+## api key (example below is not a real key)
+key <- "GCJbBprSB1dZe9CuZqySUzvr2"
+
+## api secret (example below is not a real key)
+secret <- "KS0ClkiNN9vdMuNdKO2SDYL5bXIwG3DTYF6pLHBtc3USxMMBGF"
+
+## access token
+access_token <- "1930590246-LJAipZOKbhlZUrMu2yedaCEb2eeCU4ceAKrTpeG"
+
+## access secret
+access_secret <- "RJn7cgkfr7ChSYFQnUeVOQUGRWITdwU8iPCcZRUJWvv8F"
+```
+
+buat tokennya
+```{r}
+twitter_token <- create_token(
+  app = appname,
+  consumer_key = key,
+  consumer_secret = secret,
+  access_token = access_token,
+  access_secret = access_secret)
+```
+
+ambil data $amd masukkan kedalam csv
+```{r}
+amd <- search_tweets(q = "$AMD", n = 550, lang = "en")
+tweet_amd <- amd %>% select(text)
+write.csv(tweet_amd, file = "amd_raw.csv", row.names = FALSE)
+```
+
+ambil data $nvda (nvidia) masukkan kedalam csv
+```{r}
+nvidia <- search_tweets(q = "$NVDA", n = 550, lang = "en")
+tweet_nvidia <- nvidia %>% select(text)
+write.csv(tweet_nvidia, file = "nvidia_raw.csv", row.names = FALSE)
+```
