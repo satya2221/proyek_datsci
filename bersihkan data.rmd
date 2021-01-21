@@ -1,0 +1,66 @@
+---
+title: "Bersihkan data"
+author: Owner
+date: 1/21/2021
+output: html_document
+---
+
+The code chunk appears:
+```{r}
+library(tidyverse)
+```
+
+Import CSV amd_raw
+```{r}
+amd <- read.csv("amd_raw.csv")
+amd_cleaned <- amd %>% select(text)
+amd_cleaned <- as_tibble(amd_cleaned)
+amd_cleaned
+```
+
+Bersihkan tweet dengan fungsi
+```{r}
+bersihkan <- function (amd_cleaned){
+# bersihkan kalimat retweet atau via
+result <- gsub("(RT|via)((?:\\b\\W*@\\w+)+)", "", amd_cleaned)
+
+# bersihkan ngetag akun lainnya
+result <- gsub("@\\w+", "", result)
+
+# berishkan pungtuasi
+result <- gsub("[[:punct:]]", "", result)
+
+# bersihkan angka
+result <- gsub("[[:digit:]]", "", result)
+
+# berishkan link
+result <- gsub("http\\w+", "", result)
+
+# bersihkan spasi
+result <- gsub("[ \t]{2,}", "", result)
+result <- gsub("^\\s+|\\s+$", "", result)
+
+# bersihkan dari \n yang menandakan adanya newline / enter
+result <- gsub("\\n","",result)
+
+result
+}
+amd_cleaned <- sapply(amd_cleaned, bersihkan)
+head(amd_cleaned)
+write.csv(amd_cleaned, file = "amd_cleaned.csv", row.names = FALSE)
+```
+
+Import CSV nvidia_raw
+```{r}
+nvidia <- read.csv("nvidia_raw.csv")
+nvidia_cleaned <- nvidia %>% select(text)
+nvidia_cleaned <- as_tibble(nvidia_cleaned)
+nvidia_cleaned
+```
+
+Bersihkan dengan panggil fungsi bersihkan
+```{r}
+nvidia_cleaned <- sapply(nvidia_cleaned, bersihkan)
+head(nvidia_cleaned)
+write.csv(nvidia_cleaned, file = "nvidia_cleaned.csv", row.names = FALSE)
+```
