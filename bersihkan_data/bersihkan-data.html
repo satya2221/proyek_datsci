@@ -402,7 +402,7 @@ summary {
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>Import CSV amd_raw</p>
-<pre class="r"><code>amd &lt;- read.csv(&quot;amd_raw.csv&quot;)
+<pre class="r"><code>amd &lt;- read.csv(&quot;../amd_raw.csv&quot;)
 amd_cleaned &lt;- amd %&gt;% select(text)
 amd_cleaned &lt;- as_tibble(amd_cleaned)
 amd_cleaned</code></pre>
@@ -422,8 +422,11 @@ amd_cleaned</code></pre>
 ## # ... with 501 more rows</code></pre>
 <p>Bersihkan tweet dengan fungsi</p>
 <pre class="r"><code>bersihkan &lt;- function (amd_cleaned){
+# hapus emoji atau hal yang tidak bertanda ascii, contohnya &lt;U+2B07&gt;
+result &lt;- gsub(&quot;&lt;U.*&gt;&quot;, &quot;&quot;, amd_cleaned)
+
 # bersihkan kalimat retweet atau via
-result &lt;- gsub(&quot;(RT|via)((?:\\b\\W*@\\w+)+)&quot;, &quot;&quot;, amd_cleaned)
+result &lt;- gsub(&quot;(RT|via)((?:\\b\\W*@\\w+)+)&quot;, &quot;&quot;, result)
 
 # bersihkan ngetag akun lainnya
 result &lt;- gsub(&quot;@\\w+&quot;, &quot;&quot;, result)
@@ -448,16 +451,16 @@ result
 }
 amd_cleaned &lt;- sapply(amd_cleaned, bersihkan)
 head(amd_cleaned)</code></pre>
-<pre><code>##      text                                                                                                                                                                                                                
-## [1,] &quot;amd up nice in premarketMarch up to earnings has begun&quot;                                                                                                                                                            
-## [2,] &quot;Autobahn InvestingCan I double my money inweeksNew video posted just now on the AMD option trade Ill be looking to make this afternoonWhat do you thinkOptionsTrading RobinHoodTraders&quot;                            
-## [3,] &quot;AMD AMD My head will explode if this isnt overby next Friday&quot;                                                                                                                                                      
-## [4,] &quot;AMD AMD My head will explode if this isnt overby next Friday&quot;                                                                                                                                                      
-## [5,] &quot;ACN FB NFLX DLTR EA SPY SPX DJIA HD GS BA GDX VZ WDC AMD ADSK V CAT JPM PLUGTo enhance your experience in trading and get instant help click here LINK IN BIO&quot;                                                     
-## [6,] &quot;BTC ETH LINK XTZ ADA VET KNC SXP TWTR ES JD BABA BIDU TME SPY QQQ DIS TSLA SHOPAMD AAPL SQ AMZN EA SEDG MA V KO PYPL RCL GOOG NKLA DKNG HD ROKU NFLX FBGLD VXX MSFTThanks to the discord group for the traders UFF&quot;</code></pre>
+<pre><code>##      text                                                                                                                                                                                                            
+## [1,] &quot;amd up nice in premarketMarch up to earnings has begun&quot;                                                                                                                                                        
+## [2,] &quot;Autobahn InvestingCan I double my money inweeksNew video posted just now on the AMD option trade Ill be looking to make this afternoonWhat do you thinkOptionsTrading RobinHoodTraders&quot;                        
+## [3,] &quot;AMD AMD My head will explode if this isnt overby next Friday&quot;                                                                                                                                                  
+## [4,] &quot;AMD AMD My head will explode if this isnt overby next Friday&quot;                                                                                                                                                  
+## [5,] &quot;ACN FB NFLX DLTR EA SPY SPX DJIA HD GS BA GDX VZ WDC AMD ADSK V CAT JPM PLUGTo enhance your experience in trading and get instant help click here LINK IN BIO&quot;                                                 
+## [6,] &quot;BTC ETH LINK XTZ ADA VET KNC SXP TWTR ES JD BABA BIDU TME SPY QQQ DIS TSLA SHOPAMD AAPL SQ AMZN EA SEDG MA V KO PYPL RCL GOOG NKLA DKNG HD ROKU NFLX FBGLD VXX MSFTThanks to the discord group for the traders&quot;</code></pre>
 <pre class="r"><code>write.csv(amd_cleaned, file = &quot;amd_cleaned.csv&quot;, row.names = FALSE)</code></pre>
 <p>Import CSV nvidia_raw</p>
-<pre class="r"><code>nvidia &lt;- read.csv(&quot;nvidia_raw.csv&quot;)
+<pre class="r"><code>nvidia &lt;- read.csv(&quot;../nvidia_raw.csv&quot;)
 nvidia_cleaned &lt;- nvidia %&gt;% select(text)
 nvidia_cleaned &lt;- as_tibble(nvidia_cleaned)
 nvidia_cleaned</code></pre>

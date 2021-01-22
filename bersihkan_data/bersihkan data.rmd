@@ -12,7 +12,7 @@ library(tidyverse)
 
 Import CSV amd_raw
 ```{r}
-amd <- read.csv("amd_raw.csv")
+amd <- read.csv("../amd_raw.csv")
 amd_cleaned <- amd %>% select(text)
 amd_cleaned <- as_tibble(amd_cleaned)
 amd_cleaned
@@ -21,8 +21,11 @@ amd_cleaned
 Bersihkan tweet dengan fungsi
 ```{r}
 bersihkan <- function (amd_cleaned){
+# hapus emoji atau hal yang tidak bertanda ascii, contohnya <U+2B07>
+result <- gsub("<U.*>", "", amd_cleaned)
+
 # bersihkan kalimat retweet atau via
-result <- gsub("(RT|via)((?:\\b\\W*@\\w+)+)", "", amd_cleaned)
+result <- gsub("(RT|via)((?:\\b\\W*@\\w+)+)", "", result)
 
 # bersihkan ngetag akun lainnya
 result <- gsub("@\\w+", "", result)
@@ -52,7 +55,7 @@ write.csv(amd_cleaned, file = "amd_cleaned.csv", row.names = FALSE)
 
 Import CSV nvidia_raw
 ```{r}
-nvidia <- read.csv("nvidia_raw.csv")
+nvidia <- read.csv("../nvidia_raw.csv")
 nvidia_cleaned <- nvidia %>% select(text)
 nvidia_cleaned <- as_tibble(nvidia_cleaned)
 nvidia_cleaned

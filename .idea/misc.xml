@@ -19,6 +19,14 @@
             </RMarkdownRenderProfile>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/bersihkan_data/bersihkan data.rmd">
+          <value>
+            <RMarkdownRenderProfile>
+              <option name="lastOutput" value="$PROJECT_DIR$/bersihkan_data/bersihkan-data.html" />
+              <option name="outputDirectoryUrl" value="file://$PROJECT_DIR$/bersihkan_data" />
+            </RMarkdownRenderProfile>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/coba_twitter.rmd">
           <value>
             <RMarkdownRenderProfile>
@@ -30,6 +38,7 @@
         <entry key="file://$PROJECT_DIR$/pengambilan_data/ambil_data.rmd">
           <value>
             <RMarkdownRenderProfile>
+              <option name="lastOutput" value="$PROJECT_DIR$/pengambilan_data/ambil_data.html" />
               <option name="outputDirectoryUrl" value="file://$PROJECT_DIR$/pengambilan_data" />
             </RMarkdownRenderProfile>
           </value>

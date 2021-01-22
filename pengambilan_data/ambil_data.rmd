@@ -8,8 +8,6 @@ output: html_document
 Load library
 ```{r}
 library(rtweet)
-library(ggplot2)
-library(dplyr)
 library(tidyverse)
 # text mining library
 library(tidytext)
