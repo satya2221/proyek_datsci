@@ -1,0 +1,63 @@
+---
+title: "Bersihkan data training"
+author: Owner
+date: 1/24/2021
+output: html_document
+---
+```{r}
+library(tidyverse)
+```
+Buat function untuk bersihkan simbol, pungtuasi, atau spasi yang berlebihan
+```{r}
+bersihkan <- function (cleaned){
+# berishkan pungtuasi
+result <- gsub("[[:punct:]]", "", cleaned)
+
+# bersihkan angka
+result <- gsub("[[:digit:]]", "", result)
+
+# bersihkan spasi
+result <- gsub("[ \t]{2,}", "", result)
+result <- gsub("^\\s+|\\s+$", "", result)
+
+result
+}
+```
+
+Panggil dataset berisi kalimat negatif
+```{r}
+negatif <- readLines("E:\\OneDrive\\SMT5\\Datsci\\proyekAkhir\\positive_negative_sentence\\negative.txt")
+negatif <- as_tibble(negatif)
+negatif
+```
+Bersihkan dataset kalimat negatif dengan memanggil fungsi bersihkan yang tadi sudah disebut
+```{r}
+negatif_cleaned <- sapply(negatif,bersihkan)
+head(negatif_cleaned)
+```
+Ambil 1000 data saja, kemudian pindahkan ke csv
+```{r}
+set.seed(10)
+negatif_cleaned <- sample(negatif_cleaned,1000)
+negatif_cleaned <- as_tibble(negatif_cleaned)
+write.csv(negatif_cleaned, file = "negative_cleaned.csv", row.names = FALSE)
+```
+
+Panggil dataset berisi kalimat positif
+```{r}
+positif <- readLines("E:\\OneDrive\\SMT5\\Datsci\\proyekAkhir\\positive_negative_sentence\\positive.txt")
+positif <- as_tibble(positif)
+positif
+```
+Bersihkan dataset kalimat positif dengan memanggil fungsi bersihkan yang tadi sudah disebut
+```{r}
+positif_cleaned <- sapply(positif, bersihkan)
+head(positif_cleaned)
+```
+Ambil 1000 data saja, kemudian pindahkan ke csv
+```{r}
+set.seed(5)
+positif_cleaned <- sample(positif_cleaned,1000)
+positif_cleaned <- as_tibble(positif_cleaned)
+write.csv(positif_cleaned, file = "positive_cleaned.csv", row.names = FALSE)
+```
