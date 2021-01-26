@@ -67,3 +67,16 @@ nvidia_cleaned <- sapply(nvidia_cleaned, bersihkan)
 head(nvidia_cleaned)
 write.csv(nvidia_cleaned, file = "nvidia_cleaned.csv", row.names = FALSE)
 ```
+Import google_raw
+```{r}
+google <- read.csv("../google_raw.csv")
+google_cleaned <- google %>% select(text)
+google_cleaned <- as_tibble(google_cleaned)
+```
+
+bersihkan dengan panggil fungsi
+```{r}
+google_cleaned <- sapply(google_cleaned,bersihkan)
+head(google_cleaned)
+write.csv(google_cleaned, file = "google_cleaned.csv", row.names = FALSE)
+```

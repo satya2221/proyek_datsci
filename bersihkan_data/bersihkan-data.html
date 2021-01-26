@@ -489,6 +489,21 @@ head(nvidia_cleaned)</code></pre>
 ## [5,] &quot;ANOTHA ONE More success over atby another reaper member posted anonymously   BA BABA AMZN AAPL NFLX NVDA TSLA SPX SPY ES QQQ VIX IWM GOOG GOOGL BYND OptionsTrading&quot;
 ## [6,] &quot;ANOTHA ONE More success over atby another reaper member posted anonymously   BA BABA AMZN AAPL NFLX NVDA TSLA SPX SPY ES QQQ VIX IWM GOOG GOOGL BYND OptionsTrading&quot;</code></pre>
 <pre class="r"><code>write.csv(nvidia_cleaned, file = &quot;nvidia_cleaned.csv&quot;, row.names = FALSE)</code></pre>
+<p>Import google_raw</p>
+<pre class="r"><code>google &lt;- read.csv(&quot;../google_raw.csv&quot;)
+google_cleaned &lt;- google %&gt;% select(text)
+google_cleaned &lt;- as_tibble(google_cleaned)</code></pre>
+<p>bersihkan dengan panggil fungsi</p>
+<pre class="r"><code>google_cleaned &lt;- sapply(google_cleaned,bersihkan)
+head(google_cleaned)</code></pre>
+<pre><code>##      text                                                                                                                                                                     
+## [1,] &quot;DIA SPY QQQ&quot;                                                                                                                                                            
+## [2,] &quot;Sign Up to Our Mailing List to Access A Sneak peak of Our Weekly Newsletter and Last Week in ReviewSign Up Bottom of the PageSPY UVXY NFLX AMZN AAPL FB GOOGL TSLA MSFT&quot;
+## [3,] &quot;Buy today sell inyears or moreLong BABA FB GOOGL ADBE NVDA V MSFT MA RMD LULU AAPL JD VEEV TTWO PG COST PYPL AMZN CRM SBUX TSLA NOW DIS&quot;                                
+## [4,] &quot;Stock market performance of POTUS Donald Trump per year is the best under any presidentper yearSPYper year Big Techs with TrumpAAPLAMZNMSFTGOOGLFBSPY&quot;                  
+## [5,] &quot;Operating marginamong largest stocks SPX SPYTESLA INC TSLA&quot;                                                                                                             
+## [6,] &quot;ROEamong largest stocks SPX SPYTESLA INC TSLA&quot;</code></pre>
+<pre class="r"><code>write.csv(google_cleaned, file = &quot;google_cleaned.csv&quot;, row.names = FALSE)</code></pre>
 
 
 
