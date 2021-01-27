@@ -43,14 +43,21 @@ twitter_token <- create_token(
 
 ambil data $amd masukkan kedalam csv
 ```{r}
-amd <- search_tweets(q = "$AMD", n = 550, lang = "en")
+amd <- search_tweets(q = "$AMD", n = 1000, lang = "en")
 tweet_amd <- amd %>% select(text)
 write.csv(tweet_amd, file = "amd_raw.csv", row.names = FALSE)
 ```
 
 ambil data $nvda (nvidia) masukkan kedalam csv
 ```{r}
-nvidia <- search_tweets(q = "$NVDA", n = 550, lang = "en")
+nvidia <- search_tweets(q = "$NVDA", n = 1000, lang = "en")
 tweet_nvidia <- nvidia %>% select(text)
 write.csv(tweet_nvidia, file = "nvidia_raw.csv", row.names = FALSE)
+```
+
+ambil data $googl (google) masukkan kedalam csv
+```{r}
+google <- search_tweets(q = "$GOOGL", n = 1000, lang = "en")
+tweet_google <- google %>% select(text)
+write.csv(tweet_google, file = "google_raw.csv", row.names = FALSE)
 ```

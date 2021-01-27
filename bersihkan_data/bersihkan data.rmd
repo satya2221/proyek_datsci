@@ -84,5 +84,5 @@ google_cleaned <- sapply(google_cleaned,bersihkan)
 google_cleaned <- google_cleaned[!duplicated(google_cleaned)]
 google_cleaned <- as.tibble(google_cleaned)
 head(google_cleaned)
-write.csv(google_cleaned, file = "google_cleaned.csv", row.names = FALSE)
+write.csv(google_cleaned, file = "googles_cleaned.csv", row.names = FALSE)
 ```
