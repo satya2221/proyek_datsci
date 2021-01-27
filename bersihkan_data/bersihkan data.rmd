@@ -49,6 +49,8 @@ result <- gsub("\\n","",result)
 result
 }
 amd_cleaned <- sapply(amd_cleaned, bersihkan)
+amd_cleaned <- amd_cleaned[!duplicated(amd_cleaned)]
+amd_cleaned <- as.tibble(amd_cleaned)
 head(amd_cleaned)
 write.csv(amd_cleaned, file = "amd_cleaned.csv", row.names = FALSE)
 ```
@@ -64,6 +66,8 @@ nvidia_cleaned
 Bersihkan dengan panggil fungsi bersihkan
 ```{r}
 nvidia_cleaned <- sapply(nvidia_cleaned, bersihkan)
+nvidia_cleaned <- nvidia_cleaned[!duplicated(nvidia_cleaned)]
+nvidia_cleaned <- as.tibble(nvidia_cleaned)
 head(nvidia_cleaned)
 write.csv(nvidia_cleaned, file = "nvidia_cleaned.csv", row.names = FALSE)
 ```
@@ -77,6 +81,8 @@ google_cleaned <- as_tibble(google_cleaned)
 bersihkan dengan panggil fungsi
 ```{r}
 google_cleaned <- sapply(google_cleaned,bersihkan)
+google_cleaned <- google_cleaned[!duplicated(google_cleaned)]
+google_cleaned <- as.tibble(google_cleaned)
 head(google_cleaned)
 write.csv(google_cleaned, file = "google_cleaned.csv", row.names = FALSE)
 ```
