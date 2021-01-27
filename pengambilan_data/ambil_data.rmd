@@ -9,8 +9,6 @@ Load library
 ```{r}
 library(rtweet)
 library(tidyverse)
-# text mining library
-library(tidytext)
 ```
 
 panggil akses, kunci, dan token
