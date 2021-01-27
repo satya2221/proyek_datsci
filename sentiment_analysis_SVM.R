@@ -4,7 +4,7 @@
 # Created on: 1/24/2021
 library(tidyverse)
 library(RTextTools)
-library(e1071)
+
 
 svm <- function (tweet_all, positive, negative, length_data) {
   #buaat factor ada berapa banyak positive dan negativenya

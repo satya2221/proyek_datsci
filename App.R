@@ -7,6 +7,7 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 library(plotly)
+library(DT)
 
 sentimentAMD <- read.csv("result_amd.csv")
 sentimentNVDA <- read.csv("result_nvda.csv")
