@@ -4,8 +4,6 @@
 # Created on: 27/01/2021
 
 library(shiny)
-library(here)
-library(vroom)
 library(dplyr)
 library(ggplot2)
 library(plotly)
