@@ -49,27 +49,30 @@ svm <- function (tweet_all, positive, negative, length_data) {
 
 set.seed(1234)
 # panggil dataset kalimat positve negative yang sudah dibersihkan
-positive <- read.csv("E:\\OneDrive\\SMT5\\Datsci\\proyekAkhir\\positive_negative_sentence\\positive_cleaned.csv")
-negative <- read.csv("E:\\OneDrive\\SMT5\\Datsci\\proyekAkhir\\positive_negative_sentence\\negative_cleaned.csv")
+positive <- read.csv("positive_negative_sentence\\positive_cleaned.csv")
+negative <- read.csv("positive_negative_sentence\\negative_cleaned.csv")
 
 # tentukan sentimen AMD
 tweet_amd <- read.csv("amd_cleaned_baru.csv")
 amd_result <- svm(tweet_amd,positive, negative, nrow(tweet_amd))
 amd <- ggplot(data = amd_result, aes(x=sentiment_nya, fill = sentiment_nya)) +
             geom_bar() + labs(title = "AMD")
+write.csv(amd_result, file = "result_amd.csv", row.names = FALSE)
 
 # tentukan sentimen NVDA
 tweet_nvda <- read.csv("nvda_cleaned_baru.csv")
 nvda_result <- svm(tweet_nvda,positive, negative,nrow(tweet_nvda))
 nvda<- ggplot(data = nvda_result, aes(x=sentiment_nya, fill = sentiment_nya)) +
             geom_bar() + labs(title = "NVDA")
+write.csv(nvda_result, file = "result_nvda.csv", row.names = FALSE)
 
 # tentukan sentimen GOOGL
 tweet_googl <- read.csv("googles_cleaned.csv")
 googl_result <- svm(tweet_googl,positive, negative,nrow(tweet_googl))
-google <- ggplot(data = googl_result, aes(x=sentiment_nya, fill = sentiment_nya)) +
+googl <- ggplot(data = googl_result, aes(x=sentiment_nya, fill = sentiment_nya)) +
             geom_bar()+ labs(title = "GOOGL")
+write.csv(googl_result, file = "result_googl.csv", row.names = FALSE)
 
-ggsave("google.png", plot = google)
+ggsave("google.png", plot = googl)
 ggsave("nvda.png", plot = nvda)
 ggsave("amd.png", plot = amd)
